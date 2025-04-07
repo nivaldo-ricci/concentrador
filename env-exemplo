@@ -1,0 +1,9 @@
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmb2N1bXJ6emhndmhvenZqaW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwMzA0MzEsImV4cCI6MjA1OTYwNjQzMX0.3B6gmOsWWfx4omIJ1zV54KDwBRDucK78AAD6VJGtWIU
+VITE_SUPABASE_URL=https://pfocumrzzhgvhozvjimd.supabase.co
+DATABASE_URL="postgresql://postgres:oZbZAPXDXs2FJDmS@db.pfocumrzzhgvhozvjimd.supabase.co:5432/postgres"
+# GUIA DA FARMACIA
+GUIA_CNPJ_SH=00282141000144
+GUIA_CNPJ_CPF=00282141000144
+GUIA_EMAIL=nivaldo@visaofarmaceutica.com.br
+GUIA_SENHA=4539
+GUIA_URL=https://webservice.guiadafarmaciadigital.com.br/webservice/

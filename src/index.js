@@ -265,6 +265,27 @@ app.get('/api/products/laboratorio/:laboratorio',
     }
 });
 
+// Get products by status
+app.get('/api/products/status/:id_status',
+  param('id_status').notEmpty().trim(),
+  validate,
+  async (req, res) => {
+    try {
+      const { data, error } = await supabase
+        .from('produtos')
+        .select('*')
+        .eq('ID_STATUS', req.params.id_status);
+
+      if (error) throw error;
+      if (!data.length) return res.status(404).json({ error: 'Products not found' });
+
+      res.json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    }
+});
+
 // Create new product
 app.post('/api/products',
   [

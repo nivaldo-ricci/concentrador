@@ -286,6 +286,44 @@ app.get('/api/products/status/:id_status',
     }
 });
 
+app.get('/api/products/paginado/:pagina',
+  param('pagina').notEmpty().trim().isInt({ min: 1 }),
+  validate,
+  async (req, res) => {
+    const pagina = parseInt(req.params.pagina, 10);
+    const itensPorPagina = 50;
+    const offset = (pagina - 1) * itensPorPagina;
+
+    try {
+      // 1. Obter o total de produtos
+      const { count, error: countError } = await supabase
+        .from('produtos')
+        .select('*', { count: 'exact', head: true });
+
+      if (countError) throw countError;
+
+      const totalPaginas = Math.ceil(count / itensPorPagina);
+
+      // 2. Obter os dados paginados
+      const { data, error } = await supabase
+        .from('produtos')
+        .select('*')
+        .range(offset, offset + itensPorPagina - 1);
+
+      if (error) throw error;
+
+      res.json({
+        pagina,
+        total_paginas: totalPaginas,
+        data
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch paginated products' });
+    }
+  }
+);
+
 // Create new product
 app.post('/api/products',
   [
